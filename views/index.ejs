@@ -1,0 +1,348 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Tes BCLog</title>
+</head>
+
+<body>
+    <h1 class="container">BREAD(Browse,Read,Edit,Add,Delete)</h1>
+    <h1 class="container">Filter</h1>
+    <div class="container">
+        <form id="search">
+            <input type="hidden" id="page" name="page" value="1">
+            <div class="form-group row">
+                <label class="col-sm-1 col-form-label">
+                    <input class="form-check-input" type="checkbox" name="check_name"> Name
+                </label>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" name="searchName" id="searchName" placeholder="String"
+                        value="">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-1 col-form-label">
+                    <input class="form-check-input" type="checkbox" name="check_addres"> Addres
+                </label>
+                <div class="col-sm-7">
+                    <input type="number" class="form-control" placeholder="Integer" id="searchAddres"
+                        name="searchAddres" value="">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-1 col-form-label">
+                    <input class="form-check-input" type="checkbox" name="check_handphone"> No. Handphone
+                </label>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" name="searchHandphone" placeholder="Float"
+                        name="searchHandphone" value="">
+                </div>
+            </div>
+            <div class="container">
+                <button type="submit" class="btn btn-primary btn-search">Search</button>
+                <a href="/" class="btn btn-danger">Reset</a>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAdd">Add</button>
+            </div>
+        </form>
+
+        <table class="table table-striped container">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Addres</th>
+                    <th scope="col">Phone Number</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+            </ul>
+        </nav>
+
+        <!-- modal add -->
+        <div class="modal fade" id="modalAdd" tabindex="-1" role="dialog" aria-labelledby="modalAdd2"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalAdd2">Add Data</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body container">
+                        <form method="POST" id="form-add">
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Name</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" name="name" id="addName"
+                                        placeholder="Input Your Name">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Addres</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" name="addres" id="addAddres"
+                                        placeholder="Input your addres">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">No. Handphone</label>
+                                <div class="col-sm-8">
+                                    <input type="number" class="form-control" name="handphone" id="addHandphone"
+                                        placeholder="62">
+                                </div>
+                            </div>
+                            <div class="container">
+                                <div class="form-group row">
+                                    <div class="col-sm-8">
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                        <a href="/" type="submit" class="btn btn-danger" data-dismiss="modal">Cancel</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- modal edit -->
+        <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="modalEdit2"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalEdit2">Edit Data</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <form id="form-edit">
+                            <div class="form-group row">
+                                <label for="id" class="col-sm-2 col-form-label">ID</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="inputId" name="id" class="form-control id" required disabled>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control string" id="inputName" name="name"
+                                        placeholder="String" value="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Addres</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control integer" id="inputAddres" name="addres"
+                                        placeholder="Integer" value="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">No. Handphone</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control float" id="inputHandphone" name="handphone"
+                                        placeholder="Float" value="">
+                                </div>
+                            </div>
+                            <div class="container save-data">
+                                <button type="submit" id="submit-data" class="btn btn-outline-primary btn-save"
+                                    dataid="" data-dismiss="modal">Save</button>
+                                <button type="button" class="btn btn-outline-danger"
+                                    data-dismiss="modal">Cancel</button>
+                            </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+            const API_URL = 'http://localhost:3000/bclog';
+            $(document).ready(() => {
+                loadData();
+                //eventlistener
+                $('#form-add').submit((event) => {
+                    event.preventDefault();
+                    tambahData();
+                })
+                $('#search').submit((event) => {
+                    event.preventDefault();
+                    loadData();
+                })
+                $('table tbody').on("click", ".btn-delete", (event) => {
+                    event.preventDefault();
+                    removeData(event.currentTarget.attributes.dataid.value);
+                })
+                $('table tbody').on('click', '.btn-edit', (event) => {
+                    showData(event.currentTarget.attributes.dataid.value);
+                })
+                $('.save-data').on('click', '.btn-save', (event) => {
+                    updateData(event.currentTarget.attributes.dataid.value);
+                    console.log(event.currentTarget.attributes)
+                    loadData();
+                })
+                $('ul.pagination').on('click', '.previous', (event) => {
+                    let page = $('#page').val();
+                    $('#page').val(parseInt(page) - 1);
+                    loadData();
+                })
+                $('ul.pagination').on('click', '.pageNow', (event) => {
+                    let page = $('#page').val();
+                    $('#page').val($(event.currentTarget).attr('data-page'));
+                    loadData();
+                })
+                $('ul.pagination').on('click', '.next', (event) => {
+                    let page = $('#page').val();
+                    $('#page').val(parseInt(page) + 1);
+                    loadData();
+                })
+            });
+            const showData = (id) => {
+                $.ajax({
+                    method: "GET",
+                    url: `${API_URL}/${id}`,
+                    dataType: 'json'
+                })
+                    .done((data) => {
+                        let a = '';
+                        data.forEach(item => {
+                            $('#submit-data').attr('dataid', item.id);
+                            $('#inputName').val(item.name);
+                            $('#inputAddres').val(item.addres);
+                            $('#inputHandphone').val(item.handphone);
+                        })
+                    })
+                    .fail((err) => {
+                        console.log('terjadi error', err)
+                    })
+            }
+            const loadData = () => {
+                const filter = $('#search').serializeArray();
+                // console.log(filter)
+                $.ajax({
+                    method: "GET",
+                    url: API_URL,
+                    data: filter,
+                    dataType: "json"
+                })
+                    .done((result) => {
+                        const data = result.result
+                        const value = result.result
+                        let html = '';
+                        console.log(result, "ini resulllt")
+                        console.log(value, "ini value")
+
+                        console.log(data, "ini dataaaa")
+                        data.forEach(item => {
+                            console.log(item, "ini item")
+                            html += `<tr>
+            <td scope="row">${item.id}</td>
+            <td>${item.name}</td>
+            <td>${item.addres}</td>
+            <td ><a type="button" href="https://api.whatsapp.com/send?phone=${item.handphone}"> ${item.handphone} </a></td>   
+            <td>
+            <button type="button" class = "btn btn-info btn-edit btn-sm" dataid = "${item.id}"
+            data-toggle="modal" data-target="#modalEdit">Edit
+            <button type="button" class = "btn btn-danger btn-delete btn-sm" dataid = "${item.id}">Delete
+            </td>
+            </tr>`
+                        });
+                        $('table tbody').html(html);
+                        let currentPage = result.currentPage;
+                        let totalPage = result.totalPage;
+                        let url = result.url;
+                        let pagination =
+                            `<li class="page-item ${currentPage <= 1 ? ' disabled' : ''}"><button class="page-link previous" tabindex="-1" aria-disabled="true">Previous</button></li>\n`;
+                        for (let i = 1; i <= totalPage; i++) {
+                            pagination +=
+                                `<li class="page-item ${currentPage == i ? 'active' : ''}"><button class="page-link pageNow" data-page='${i}'>${i}</button></li>\n`
+                        }
+                        pagination +=
+                            `<li class="page-item ${currentPage >= totalPage ? ' disabled' : ''}"><button class="page-link next">Next</button></li>`;
+                        $('nav ul').html(pagination);
+                    });
+            }
+            const tambahData = () => {
+                $.ajax({
+                    method: "POST",
+                    url: API_URL,
+                    dataType: 'json',
+                    data: {
+                        name: $('#addName').val(),
+                        addres: $('#addAddres').val(),
+                        handphone: $('#addHandphone').val(),
+                    }
+                })
+                    .done((data) => {
+                        loadData();
+                        location.replace('/')
+                    })
+                    .fail((err) => {
+                        console.log('terjadi error', err)
+                    })
+            }
+            const updateData = (id) => {
+                $.ajax({
+                    method: "PUT",
+                    url: `${API_URL}/${id}`,
+                    dataType: 'json',
+                    data: {
+                        id: `${id}`,
+                        name: $('#inputName').val(),
+                        addres: $('#inputAddres').val(),
+                        handphone: $('#inputHandphone').val(),
+                    },
+                })
+                    .done((data) => {
+                        loadData();
+                    })
+                    .fail((err) => {
+                        console.log('terjadi error', err)
+                    })
+            }
+            const removeData = (id) => {
+                $.ajax({
+                    method: "DELETE",
+                    url: `${API_URL}/${id}`,
+                    dataType: 'json'
+                })
+                    .done((data) => {
+                        loadData();
+                    })
+                    .fail((err) => {
+                        console.log('terjadi error', err)
+                    })
+            }
+        </script>
+</body>
+
+</html>
